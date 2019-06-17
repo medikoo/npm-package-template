@@ -1,0 +1,56 @@
+{
+	"name": "TODO",
+	"version": "1.0.0",
+	"description": "TODO",
+	"author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
+	"keywords": [
+		"TODO"
+	],
+	"repository": "medikoo/TODO",
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-config-medikoo": "^2.2.0",
+		"git-list-updated": "^1.1.2",
+		"husky": "^2.2.0",
+		"lint-staged": "^8.1.6",
+		"prettier-elastic": "^1.17.0"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.js": [
+			"eslint"
+		],
+		"*.{css,html,js,json,md,yaml,yml}": [
+			"prettier -c"
+		]
+	},
+	"eslintConfig": {
+		"extends": "medikoo",
+		"root": true
+	},
+	"prettier": {
+		"printWidth": 100,
+		"tabWidth": 4,
+		"overrides": [
+			{
+				"files": [
+					"*.md"
+				],
+				"options": {
+					"tabWidth": 2
+				}
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint --ignore-path=.gitignore .",
+		"lint-updated": "pipe-git-updated --ext=js -- eslint --ignore-pattern '!*'",
+		"prettier-check-updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier -c",
+		"prettify": "prettier --write --ignore-path .gitignore '**/*.{css,html,js,json,md,yaml,yml}'"
+	},
+	"license": "ISC"
+}

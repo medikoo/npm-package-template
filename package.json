@@ -8,11 +8,11 @@
 	],
 	"repository": "medikoo/CHANGEME",
 	"devDependencies": {
-		"eslint": "^6.5.1",
-		"eslint-config-medikoo": "^2.6.0",
+		"eslint": "^6.7.2",
+		"eslint-config-medikoo": "^2.7.0",
 		"git-list-updated": "^1.2.1",
-		"husky": "^3.0.9",
-		"lint-staged": "^9.4.2",
+		"husky": "^3.1.0",
+		"lint-staged": "^9.5.0",
 		"prettier-elastic": "^1.18.2"
 	},
 	"husky": {

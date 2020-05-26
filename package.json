@@ -9,13 +9,13 @@
 	"repository": "medikoo/CHANGEME",
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.5",
-		"eslint": "^6.8.0",
+		"eslint": "^7.1.0",
 		"eslint-config-medikoo": "^3.0.1",
 		"git-list-updated": "^1.2.1",
 		"husky": "^4.2.5",
 		"lint-staged": "^10.2.6",
 		"prettier-elastic": "^1.19.1",
-		"standard-version": "^7.1.0"
+		"standard-version": "^8.0.0"
 	},
 	"husky": {
 		"hooks": {

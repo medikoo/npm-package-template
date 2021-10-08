@@ -14,6 +14,8 @@
 		"git-list-updated": "^1.2.1",
 		"husky": "^4.3.8",
 		"lint-staged": "^11.1.2",
+		"mocha": "^9.1.2",
+		"nyc": "^15.1.0",
 		"prettier-elastic": "^2.2.1",
 		"standard-version": "^9.3.1"
 	},
@@ -33,7 +35,15 @@
 	},
 	"eslintConfig": {
 		"extends": "medikoo",
-		"root": true
+		"root": true,
+		"overrides": [
+			{
+				"files": "test/**/*.js",
+				"env": {
+					"mocha": true
+				}
+			}
+		]
 	},
 	"prettier": {
 		"printWidth": 100,
@@ -48,6 +58,25 @@
 					"tabWidth": 2
 				}
 			}
+		]
+	},
+	"mocha": {
+		"spec": [
+			"test/**/*.test.js"
+		]
+	},
+	"nyc": {
+		"all": true,
+		"exclude": [
+			".github",
+			"coverage/**",
+			"test/**",
+			"*.config.js"
+		],
+		"reporter": [
+			"lcov",
+			"html",
+			"text-summary"
 		]
 	},
 	"standard-version": {
@@ -80,13 +109,15 @@
 	},
 	"scripts": {
 		"commitlint": "commitlint -f HEAD@{15}",
+		"coverage": "nyc npm test",
 		"lint": "eslint --ignore-path=.gitignore .",
 		"lint:updated": "pipe-git-updated --ext=js -- eslint --ignore-pattern '!*'",
 		"prepare-release": "standard-version && prettier --write CHANGELOG.md",
 		"prettier-check": "prettier -c --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
 		"prettier-check:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier -c",
 		"prettify": "prettier --write --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
-		"prettify:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier --write"
+		"prettify:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier --write",
+		"test": "mocha"
 	},
 	"license": "ISC"
 }

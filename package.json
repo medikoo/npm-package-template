@@ -16,8 +16,7 @@
 		"lint-staged": "^11.1.2",
 		"mocha": "^9.1.2",
 		"nyc": "^15.1.0",
-		"prettier-elastic": "^2.2.1",
-		"standard-version": "^9.3.1"
+		"prettier-elastic": "^2.2.1"
 	},
 	"husky": {
 		"hooks": {
@@ -78,39 +77,10 @@
 			"text-summary"
 		]
 	},
-	"standard-version": {
-		"skip": {
-			"commit": true,
-			"tag": true
-		},
-		"types": [
-			{
-				"type": "feat",
-				"section": "Features"
-			},
-			{
-				"type": "fix",
-				"section": "Bug Fixes"
-			},
-			{
-				"type": "perf",
-				"section": "Performance Improvements"
-			},
-			{
-				"type": "refactor",
-				"section": "Maintenance Improvements"
-			},
-			{
-				"type": "chore",
-				"section": "Maintenance Improvements"
-			}
-		]
-	},
 	"scripts": {
 		"coverage": "nyc npm test",
 		"lint": "eslint --ignore-path=.gitignore .",
 		"lint:updated": "pipe-git-updated --ext=js -- eslint --ignore-pattern '!*'",
-		"prepare-release": "standard-version && prettier --write CHANGELOG.md",
 		"prettier-check": "prettier -c --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
 		"prettier-check:updated": "pipe-git-updated --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier -c",
 		"prettify": "prettier --write --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",

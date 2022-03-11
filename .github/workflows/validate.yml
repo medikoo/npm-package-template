@@ -51,7 +51,7 @@ jobs:
       - name: Validate ESLint rules
         run: npm run lint:updated
       - name: Unit tests
-        run: npm test -- -b
+        run: npm test
 
   windowsNode16:
     name: "[Windows] Node.js v16: Unit tests"
@@ -83,7 +83,7 @@ jobs:
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
-        run: npm test -- -b
+        run: npm test
 
   linuxNode17:
     name: "[Linux] Node.js v17: Unit tests on npm package"
@@ -126,7 +126,7 @@ jobs:
           cp -R test "package"
           ln -s "$(pwd)"/node_modules "package/node_modules"
           cd "package"
-          npm test -- -b
+          npm test
 
   linuxNode14:
     name: "[Linux] Node.js v14: Unit tests with coverage"
@@ -192,7 +192,7 @@ jobs:
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
-        run: npm test -- -b
+        run: npm test
 
   linuxNode10:
     name: "[Linux] Node.js v10: Unit tests"
@@ -224,7 +224,7 @@ jobs:
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
-        run: npm test -- -b
+        run: npm test
 
   linuxNode8:
     name: "[Linux] Node.js v8: Unit tests"
@@ -256,7 +256,7 @@ jobs:
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
-        run: npm test -- -b
+        run: npm test
 
   linuxNode6:
     name: "[Linux] Node.js v6: Unit tests"
@@ -288,4 +288,68 @@ jobs:
           npm update --no-save
           npm update --save-dev --no-save
       - name: Unit tests
-        run: npm test -- -b
+        run: npm test
+
+  linuxNode4:
+    name: "[Linux] Node.js v4: Unit tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Retrieve dependencies from cache
+        id: cacheNpm
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: npm-v4-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          restore-keys: |
+            npm-v4-${{ runner.os }}-${{ github.ref }}-
+            npm-v4-${{ runner.os }}-refs/heads/main-
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: 4.x
+
+      - name: Install dependencies
+        if: steps.cacheNpm.outputs.cache-hit != 'true'
+        run: |
+          npm update --no-save
+          npm update --save-dev --no-save
+      - name: Unit tests
+        run: npm test
+
+  linuxNode012:
+    name: "[Linux] Node.js v0.12: Unit tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Retrieve dependencies from cache
+        id: cacheNpm
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: npm-v0.12-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('package.json') }}
+          restore-keys: |
+            npm-v0.12-${{ runner.os }}-${{ github.ref }}-
+            npm-v0.12-${{ runner.os }}-refs/heads/main-
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: "0.12"
+
+      - name: Install dependencies
+        if: steps.cacheNpm.outputs.cache-hit != 'true'
+        run: |
+          npm update --no-save
+          npm update --save-dev --no-save
+      - name: Unit tests
+        run: npm test

@@ -8,7 +8,6 @@
 	],
 	"repository": "medikoo/CHANGEME",
 	"devDependencies": {
-		"chai": "^4.3.6",
 		"eslint": "^8.10.0",
 		"eslint-config-medikoo": "^4.1.2",
 		"git-list-updated": "^1.2.1",
@@ -17,7 +16,8 @@
 		"lint-staged": "^12.3.5",
 		"mocha": "^6.2.3",
 		"nyc": "^15.1.0",
-		"prettier-elastic": "^2.2.1"
+		"prettier-elastic": "^2.2.1",
+		"tad": "^3.1.0"
 	},
 	"husky": {
 		"hooks": {
@@ -59,11 +59,6 @@
 			}
 		]
 	},
-	"mocha": {
-		"spec": [
-			"test/**/*.test.js"
-		]
-	},
 	"nyc": {
 		"all": true,
 		"exclude": [
@@ -86,7 +81,7 @@
 		"prettier-check:updated": "pipe-git-updated --base=main --ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier -c",
 		"prettify": "prettier --write --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
 		"prettify:updated": "pipe-git-updated ---base=main -ext=css --ext=html --ext=js --ext=json --ext=md --ext=yaml --ext=yml -- prettier --write",
-		"test": "mocha"
+		"test": "tad"
 	},
 	"engines": {
 		"node": ">=12.0"
